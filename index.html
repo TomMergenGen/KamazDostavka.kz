@@ -52,9 +52,12 @@
             height: 72px;
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid rgba(200,146,42,0.15);
-            background: rgba(8,8,8,0.85);
+            background: rgba(8,8,8,0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            will-change: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .logo {
@@ -741,8 +744,16 @@
 
         /* ─── MOBILE (≤768px) ─── */
         @media (max-width: 768px) {
-            /* Header */
-            header { padding: 0 20px; height: 60px; }
+            /* Header — на iOS убираем backdrop-filter, он вызывает баг "приклеивания" */
+            header {
+                padding: 0 20px;
+                height: 60px;
+                background: #0a0a0a; /* полностью непрозрачный */
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
 
             /* Nav — fullscreen overlay */
             nav {
@@ -1239,13 +1250,14 @@ document.getElementById('orderForm').addEventListener('submit', (e) => {
 
 // ─── HEADER on scroll ───
 window.addEventListener('scroll', () => {
+    if (window.innerWidth <= 768) return; // на мобиле не трогаем
     const h = document.querySelector('header');
     if (window.scrollY > 60) {
         h.style.borderBottomColor = 'rgba(200,146,42,0.25)';
     } else {
         h.style.borderBottomColor = 'rgba(200,146,42,0.15)';
     }
-});
+}, { passive: true });
 </script>
 </body>
 </html>
