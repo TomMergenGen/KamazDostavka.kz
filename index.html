@@ -265,28 +265,30 @@
            ================================================================ */
         .back-to-top {
             position: fixed;
-            bottom: calc(100px + var(--sab));
-            right: calc(28px + var(--sar));
+            /* Рядом с WA кнопкой слева, на той же высоте */
+            bottom: calc(28px + var(--sab));
+            right: calc(98px + var(--sar)); /* 28px отступ + 58px WA + 12px зазор */
             width: 46px; height: 46px;
-            background: rgba(200,146,42,0.12);
+            background: rgba(10,10,10,0.88);
             border: 1px solid rgba(200,146,42,0.4);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            z-index: 2100; /* выше wa-overlay (1500) и wa-widget (2000) */
+            z-index: 2100;
             cursor: pointer;
             opacity: 0;
-            transform: translateY(16px) scale(0.85);
+            transform: translateX(12px) scale(0.85);
             pointer-events: none;
             transition: opacity 0.35s ease, transform 0.35s ease, background 0.3s;
-            -webkit-transform: translateY(16px) scale(0.85) translateZ(0);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
         .back-to-top.visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateX(0) scale(1);
             pointer-events: auto;
         }
         .back-to-top:hover {
-            background: rgba(200,146,42,0.25);
+            background: rgba(200,146,42,0.18);
             border-color: var(--gold);
         }
         .back-to-top svg { display: block; }
@@ -555,9 +557,10 @@
 
             /* ----- BACK TO TOP ----- */
             .back-to-top {
-                bottom: calc(86px + var(--sab));
-                right: calc(16px + var(--sar));
-                width: 40px; height: 40px;
+                /* WA кнопка 50px + 12px зазор + 16px правый отступ WA = 78px */
+                bottom: calc(20px + var(--sab));
+                right: calc(86px + var(--sar));
+                width: 42px; height: 42px;
             }
         }
 
@@ -600,8 +603,8 @@
             }
             .wa-btn { width: 44px; height: 44px; }
             .back-to-top {
-                bottom: calc(70px + var(--sab));
-                right: calc(12px + var(--sar));
+                bottom: calc(12px + var(--sab));
+                right: calc(70px + var(--sar));
                 width: 38px; height: 38px;
             }
         }
@@ -1049,20 +1052,19 @@ function handleHeaderScroll() {
     const currentY = window.scrollY;
     const delta = currentY - lastScrollY;
 
-    // Показываем header при скролле вверх или в самом верху
-    if (currentY < 80 || delta < -6) {
+    // Показываем ТОЛЬКО у самого верха страницы (до 50px)
+    if (currentY < 50) {
         headerEl.classList.remove('header--hidden');
     }
-    // Прячем header при скролле вниз (после 120px от верха)
-    else if (delta > 6 && currentY > 120) {
+    // Прячем мгновенно при любом скролле вниз (даже 1px) после 50px
+    else if (delta > 0) {
         headerEl.classList.add('header--hidden');
-        // Закрываем мобильное меню если открыто
         burger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    // Подсветка бордера на десктопе
+    // Подсветка бордера
     headerEl.style.borderBottomColor = currentY > 60 ? 'rgba(200,146,42,0.25)' : 'rgba(200,146,42,0.15)';
 
     lastScrollY = currentY;
