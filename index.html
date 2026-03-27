@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAMAZ DOSTAVKA — Премиум доставка материалов</title>
+    <title>KAMAZ DOSTAVKA — Доставка строительных материалов</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,8 +13,6 @@
             --gold-light: #E8B84B;
             --black: #080808;
             --charcoal: #111111;
-            --steel: #1A1A1A;
-            --muted: #2A2A2A;
             --text-dim: #888888;
             --text-mid: #AAAAAA;
             --text-light: #EEEEEE;
@@ -34,817 +32,194 @@
             max-width: 100vw;
         }
 
-        /* ─── NOISE TEXTURE OVERLAY ─── */
         body::before {
             content: '';
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.35;
+            pointer-events: none; z-index: 9999; opacity: 0.35;
         }
 
-        /* ─── HEADER ─── */
+        /* HEADER */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 0 60px;
-            height: 72px;
+            padding: 0 60px; height: 72px;
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid rgba(200,146,42,0.15);
             background: rgba(8,8,8,0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            will-change: transform;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            -webkit-transform: translateZ(0); transform: translateZ(0);
         }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            letter-spacing: 0.12em;
-            color: var(--white);
-            text-decoration: none;
-        }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.12em; color: var(--white); text-decoration: none; }
         .logo span { color: var(--gold); }
-
-        nav {
-            display: flex; align-items: center; gap: 40px;
-        }
-        nav a {
-            font-size: 0.78rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--text-dim);
-            transition: color 0.3s;
-            font-weight: 500;
-        }
+        nav { display: flex; align-items: center; gap: 40px; }
+        nav a { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--text-dim); transition: color 0.3s; font-weight: 500; }
         nav a:hover { color: var(--gold-light); }
-
-        .lang-switch {
-            font-family: var(--font-display);
-            letter-spacing: 0.1em;
-            font-size: 0.9rem;
-            background: transparent;
-            border: 1px solid rgba(200,146,42,0.4);
-            color: var(--gold);
-            padding: 6px 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .lang-switch { font-family: var(--font-display); letter-spacing: 0.1em; font-size: 0.9rem; background: transparent; border: 1px solid rgba(200,146,42,0.4); color: var(--gold); padding: 6px 14px; border-radius: 4px; cursor: pointer; transition: all 0.3s; }
         .lang-switch:hover { background: var(--gold); color: var(--black); }
 
-        /* ─── BURGER ─── */
+        /* BURGER */
         .burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
         .burger div { width: 28px; height: 1.5px; background: var(--gold); transition: 0.3s; }
         .burger.active .line-top { transform: rotate(45deg) translate(5px, 5px); }
         .burger.active .line-mid { opacity: 0; }
         .burger.active .line-bottom { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 120px 60px 80px;
-        }
-
-        .hero-photo {
-            position: absolute; inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000');
-            background-size: cover;
-            background-position: center 40%;
-            filter: brightness(0.28) saturate(0.6);
-        }
-
-        .hero-bg-lines {
-            position: absolute; inset: 0;
-            background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(200,146,42,0.05) 80px),
-                repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,146,42,0.03) 80px);
-            pointer-events: none;
-        }
-
-        .hero-accent {
-            position: absolute;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(200,146,42,0.18) 0%, transparent 65%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative; z-index: 2;
-            max-width: 900px;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid rgba(200,146,42,0.35);
-            padding: 8px 20px;
-            border-radius: 2px;
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 40px;
-            animation: fadeDown 0.8s ease both;
-        }
-        .hero-badge::before {
-            content: '';
-            width: 6px; height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            animation: pulse 2s ease infinite;
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 13vw, 11rem);
-            line-height: 0.95;
-            letter-spacing: 0.01em;
-            color: var(--white);
-            animation: fadeUp 0.9s ease 0.2s both;
-            word-break: break-word;
-            overflow-wrap: break-word;
-        }
-        .hero h1 em {
-            font-style: normal;
-            color: var(--gold);
-            display: block;
-        }
-
-        .hero-sub {
-            margin-top: 32px;
-            font-size: 1.05rem;
-            color: var(--text-mid);
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeUp 0.9s ease 0.4s both;
-        }
-
-        .hero-links {
-            display: flex; gap: 16px; justify-content: center;
-            margin-top: 48px;
-            animation: fadeUp 0.9s ease 0.6s both;
-        }
-
-        .btn-primary {
-            font-family: var(--font-body);
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            background: var(--gold);
-            color: var(--black);
-            padding: 16px 28px;
-            border-radius: 3px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 120px 60px 80px; }
+        .hero-photo { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000'); background-size: cover; background-position: center 40%; filter: brightness(0.28) saturate(0.6); }
+        .hero-bg-lines { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(200,146,42,0.05) 80px), repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,146,42,0.03) 80px); pointer-events: none; }
+        .hero-accent { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,146,42,0.18) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; text-align: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(200,146,42,0.35); padding: 8px 20px; border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 40px; animation: fadeDown 0.8s ease both; }
+        .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 13vw, 11rem); line-height: 0.95; letter-spacing: 0.01em; color: var(--white); animation: fadeUp 0.9s ease 0.2s both; word-break: break-word; overflow-wrap: break-word; }
+        .hero h1 em { font-style: normal; color: var(--gold); display: block; }
+        .hero-sub { margin-top: 32px; font-size: 1.05rem; color: var(--text-mid); font-weight: 300; line-height: 1.6; max-width: 520px; margin-left: auto; margin-right: auto; animation: fadeUp 0.9s ease 0.4s both; }
+        .hero-links { display: flex; gap: 16px; justify-content: center; margin-top: 48px; animation: fadeUp 0.9s ease 0.6s both; }
+        .btn-primary { font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; background: var(--gold); color: var(--black); padding: 16px 28px; border-radius: 3px; transition: all 0.3s; white-space: nowrap; }
         .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,146,42,0.35); }
-
-        .btn-ghost {
-            font-family: var(--font-body);
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.15);
-            color: var(--text-light);
-            padding: 16px 28px;
-            border-radius: 3px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
+        .btn-ghost { font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.15); color: var(--text-light); padding: 16px 28px; border-radius: 3px; transition: all 0.3s; white-space: nowrap; }
         .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-        .hero-stats {
-            display: flex; gap: 60px; justify-content: center;
-            margin-top: 80px;
-            padding-top: 48px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            animation: fadeUp 0.9s ease 0.8s both;
-        }
+        .hero-stats { display: flex; gap: 60px; justify-content: center; margin-top: 80px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.06); animation: fadeUp 0.9s ease 0.8s both; }
         .stat-item { text-align: center; }
-        .stat-num {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--gold);
-            line-height: 1;
-            letter-spacing: 0.05em;
-        }
-        .stat-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-top: 6px;
-        }
+        .stat-num { font-family: var(--font-display); font-size: 3rem; color: var(--gold); line-height: 1; letter-spacing: 0.05em; }
+        .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-top: 6px; }
 
-        /* ─── SECTION BASE ─── */
-        .section {
-            padding: 120px 60px;
-        }
+        .eyebrow { display: inline-block; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 600; }
+        .gold-divider { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; }
 
-        .eyebrow {
-            display: inline-block;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        /* ─── FLEET SECTION ─── */
-        .fleet-section {
-            background: var(--charcoal);
-            position: relative;
-            overflow: hidden;
-        }
-        .fleet-section::after {
-            content: 'KAMAZ';
-            position: absolute;
-            right: -40px; top: 50%;
-            transform: translateY(-50%);
-            font-family: var(--font-display);
-            font-size: 18rem;
-            color: rgba(255,255,255,0.02);
-            letter-spacing: 0.1em;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .fleet-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .fleet-image-wrap {
-            position: relative;
-            min-width: 0;
-        }
+        /* FLEET */
+        .fleet-section { background: var(--charcoal); position: relative; overflow: hidden; padding: 120px 60px; }
+        .fleet-section::after { content: 'KAMAZ'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 18rem; color: rgba(255,255,255,0.02); letter-spacing: 0.1em; pointer-events: none; white-space: nowrap; }
+        .fleet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
         .fleet-grid > * { min-width: 0; }
-        .materials-grid > * { min-width: 0; }
-        .process-strip > * { min-width: 0; }
-        .contact-inner > * { min-width: 0; }
-
-        .fleet-image-wrap::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border: 1px solid rgba(200,146,42,0.2);
-            border-radius: 6px;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .fleet-image-wrap img {
-            width: 100%;
-            border-radius: 6px;
-            display: block;
-            filter: brightness(0.85) contrast(1.1);
-        }
-
-        .fleet-text h2 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 0.95;
-            letter-spacing: 0.04em;
-            color: var(--white);
-            margin-bottom: 28px;
-        }
+        .fleet-image-wrap { position: relative; min-width: 0; }
+        .fleet-image-wrap::before { content: ''; position: absolute; inset: -1px; border: 1px solid rgba(200,146,42,0.2); border-radius: 6px; pointer-events: none; z-index: 1; }
+        .fleet-image-wrap img { width: 100%; border-radius: 6px; display: block; filter: brightness(0.85) contrast(1.1); }
+        .fleet-text h2 { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; letter-spacing: 0.04em; color: var(--white); margin-bottom: 28px; }
         .fleet-text h2 em { font-style: normal; color: var(--gold); }
+        .fleet-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; max-width: 400px; }
+        .fleet-specs { display: flex; gap: 32px; margin-top: 40px; }
+        .spec-card { flex: 1; border: 1px solid rgba(200,146,42,0.2); padding: 20px; border-radius: 4px; background: rgba(200,146,42,0.03); }
+        .spec-card .spec-val { font-family: var(--font-display); font-size: 2.2rem; color: var(--gold); letter-spacing: 0.05em; }
+        .spec-card .spec-key { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-top: 4px; }
 
-        .fleet-text p {
-            font-size: 1rem;
-            color: var(--text-mid);
-            line-height: 1.7;
-            font-weight: 300;
-            max-width: 400px;
-        }
+        /* MATERIALS — ACCORDION */
+        .materials-section { background: var(--black); padding: 120px 60px; }
+        .materials-header { max-width: 1200px; margin: 0 auto 60px; }
+        .materials-header h2 { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 6rem); letter-spacing: 0.04em; line-height: 0.95; }
+        .mat-categories { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
+        .mat-category { border: 1px solid rgba(200,146,42,0.12); border-radius: 6px; overflow: hidden; background: rgba(255,255,255,0.015); transition: border-color 0.3s; }
+        .mat-category:hover { border-color: rgba(200,146,42,0.28); }
+        .mat-category-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; cursor: pointer; user-select: none; gap: 16px; }
+        .mat-category-left { display: flex; align-items: center; gap: 20px; }
+        .mat-cat-icon { width: 44px; height: 44px; border: 1px solid rgba(200,146,42,0.25); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: rgba(200,146,42,0.04); }
+        .mat-cat-title { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.06em; color: var(--white); }
+        .mat-cat-count { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 2px; }
+        .mat-cat-arrow { width: 28px; height: 28px; border: 1px solid rgba(200,146,42,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.3s, background 0.3s; color: var(--gold); font-size: 0.75rem; }
+        .mat-category.open .mat-cat-arrow { transform: rotate(180deg); background: rgba(200,146,42,0.1); }
+        .mat-category-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .mat-category.open .mat-category-body { max-height: 600px; }
+        .mat-items { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 28px 24px; }
+        .mat-item { background: rgba(200,146,42,0.06); border: 1px solid rgba(200,146,42,0.15); border-radius: 3px; padding: 7px 14px; font-size: 0.8rem; color: var(--text-mid); letter-spacing: 0.04em; transition: all 0.2s; cursor: default; }
+        .mat-item:hover { background: rgba(200,146,42,0.12); color: var(--gold-light); border-color: rgba(200,146,42,0.4); }
+        .mat-item.hl { background: rgba(200,146,42,0.1); color: var(--gold); border-color: rgba(200,146,42,0.35); }
 
-        .fleet-specs {
-            display: flex; gap: 32px;
-            margin-top: 40px;
-        }
-        .spec-card {
-            flex: 1;
-            border: 1px solid rgba(200,146,42,0.2);
-            padding: 20px;
-            border-radius: 4px;
-            background: rgba(200,146,42,0.03);
-        }
-        .spec-card .spec-val {
-            font-family: var(--font-display);
-            font-size: 2.2rem;
-            color: var(--gold);
-            letter-spacing: 0.05em;
-        }
-        .spec-card .spec-key {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-dim);
-            margin-top: 4px;
-        }
-
-        /* ─── MATERIALS SECTION ─── */
-        .materials-section {
-            background: var(--black);
-        }
-        .materials-header {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-        .materials-header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 7vw, 6rem);
-            letter-spacing: 0.04em;
-            line-height: 0.95;
-        }
-
-        .materials-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr 1fr;
-            gap: 16px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .mat-card {
-            position: relative;
-            border-radius: 6px;
-            overflow: hidden;
-            height: 500px;
-            cursor: pointer;
-        }
-        .mat-card:first-child { height: 560px; }
-
-        .mat-card-bg {
-            position: absolute; inset: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.7s ease;
-        }
-        .mat-card:hover .mat-card-bg { transform: scale(1.06); }
-
-        .mat-card::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-        }
-
-        .mat-card-content {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 36px 32px;
-            z-index: 2;
-        }
-
-        .mat-card-content h3 {
-            font-family: var(--font-display);
-            font-size: 2.4rem;
-            letter-spacing: 0.06em;
-            color: var(--white);
-            line-height: 1;
-        }
-        .mat-card-content p {
-            font-size: 0.82rem;
-            color: var(--text-mid);
-            margin-top: 8px;
-            font-weight: 400;
-        }
-        .mat-tag {
-            display: inline-block;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(200,146,42,0.4);
-            padding: 4px 10px;
-            border-radius: 2px;
-            margin-bottom: 12px;
-        }
-
-        .bg-sand { background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1200'); }
-        .bg-stone { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200'); }
-        .bg-ballast { background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200'); }
-
-        /* ─── FORM SECTION ─── */
-        .contact-section {
-            background: var(--charcoal);
-            padding: 120px 60px;
-        }
-        .contact-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: start;
-        }
-        .contact-left h2 {
-            font-family: var(--font-display);
-            font-size: clamp(3.5rem, 7vw, 6rem);
-            letter-spacing: 0.04em;
-            line-height: 0.92;
-            color: var(--white);
-            margin-bottom: 28px;
-        }
+        /* CONTACT */
+        .contact-section { background: var(--charcoal); padding: 120px 60px; }
+        .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+        .contact-inner > * { min-width: 0; }
+        .contact-left h2 { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 6rem); letter-spacing: 0.04em; line-height: 0.92; color: var(--white); margin-bottom: 28px; }
         .contact-left h2 em { font-style: normal; color: var(--gold); }
-        .contact-left p {
-            font-size: 0.95rem;
-            color: var(--text-mid);
-            line-height: 1.7;
-            font-weight: 300;
-            max-width: 380px;
-        }
-        .contact-info {
-            margin-top: 48px;
-            display: flex; flex-direction: column; gap: 16px;
-        }
-        .contact-info-item {
-            display: flex; align-items: center; gap: 14px;
-        }
-        .contact-info-item .ci-icon {
-            width: 38px; height: 38px;
-            border: 1px solid rgba(200,146,42,0.3);
-            border-radius: 4px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .contact-info-item .ci-text {
-            font-size: 0.88rem;
-            color: var(--text-mid);
-        }
-        .contact-info-item .ci-text strong { color: var(--text-light); display: block; font-size: 0.95rem; }
-
-        /* Form */
-        #orderForm {
-            display: flex; flex-direction: column; gap: 14px;
-        }
+        .contact-left p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; max-width: 380px; }
+        .contact-info { margin-top: 48px; display: flex; flex-direction: column; gap: 16px; }
+        .contact-info-item { display: flex; align-items: center; gap: 14px; }
+        .ci-icon { width: 38px; height: 38px; border: 1px solid rgba(200,146,42,0.3); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .ci-text { font-size: 0.88rem; color: var(--text-mid); }
+        .ci-text strong { color: var(--text-light); display: block; font-size: 0.95rem; }
+        #orderForm { display: flex; flex-direction: column; gap: 14px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-        #orderForm input,
-        #orderForm select {
-            width: 100%;
-            padding: 18px 20px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 4px;
-            color: var(--text-light);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s, background 0.3s;
-            -webkit-appearance: none;
-        }
+        #orderForm input, #orderForm select { width: 100%; padding: 18px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--text-light); font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: border-color 0.3s, background 0.3s; -webkit-appearance: none; }
         #orderForm input::placeholder { color: var(--text-dim); }
-        #orderForm input:focus,
-        #orderForm select:focus {
-            border-color: var(--gold);
-            background: rgba(200,146,42,0.04);
-        }
-        #orderForm select option { background: var(--charcoal); }
-
-        #orderForm button {
-            width: 100%;
-            padding: 20px;
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            border-radius: 4px;
-            font-family: var(--font-body);
-            font-weight: 700;
-            font-size: 0.82rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 4px;
-        }
+        #orderForm input:focus, #orderForm select:focus { border-color: var(--gold); background: rgba(200,146,42,0.04); }
+        #orderForm select option, #orderForm select optgroup { background: var(--charcoal); }
+        #orderForm button { width: 100%; padding: 20px; background: var(--gold); color: var(--black); border: none; border-radius: 4px; font-family: var(--font-body); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 4px; }
         #orderForm button:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,146,42,0.3); }
+        .form-note { font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 4px; letter-spacing: 0.05em; }
 
-        .form-note {
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            text-align: center;
-            margin-top: 4px;
-            letter-spacing: 0.05em;
-        }
+        /* PROCESS */
+        .process-section { background: var(--black); padding: 100px 60px; }
+        .process-header { max-width: 1200px; margin: 0 auto 56px; }
+        .process-header h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 0.04em; line-height: 0.95; }
+        .process-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1200px; margin: 0 auto; }
+        .process-strip > * { min-width: 0; }
+        .process-card { border-radius: 6px; overflow: hidden; position: relative; height: 320px; }
+        .process-card-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) saturate(0.7); transition: transform 0.7s ease, filter 0.5s ease; }
+        .process-card:hover .process-card-img { transform: scale(1.07); filter: brightness(0.65) saturate(0.85); }
+        .process-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 24px; }
+        .process-num { font-family: var(--font-display); font-size: 3rem; color: var(--gold); line-height: 1; letter-spacing: 0.05em; opacity: 0.5; }
+        .process-title { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.06em; color: var(--white); margin-top: 4px; }
+        .process-desc { font-size: 0.78rem; color: var(--text-mid); margin-top: 6px; line-height: 1.5; }
 
-        /* ─── PROCESS STRIP ─── */
-        .process-section {
-            background: var(--black);
-            padding: 100px 60px;
-        }
-        .process-header {
-            max-width: 1200px;
-            margin: 0 auto 56px;
-        }
-        .process-header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            letter-spacing: 0.04em;
-            line-height: 0.95;
-        }
-        .process-strip {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .process-card {
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-            height: 320px;
-        }
-        .process-card-img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: brightness(0.55) saturate(0.7);
-            transition: transform 0.7s ease, filter 0.5s ease;
-        }
-        .process-card:hover .process-card-img {
-            transform: scale(1.07);
-            filter: brightness(0.65) saturate(0.85);
-        }
-        .process-card-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 60%);
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 28px 24px;
-        }
-        .process-num {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--gold);
-            line-height: 1;
-            letter-spacing: 0.05em;
-            opacity: 0.5;
-        }
-        .process-title {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            letter-spacing: 0.06em;
-            color: var(--white);
-            margin-top: 4px;
-        }
-        .process-desc {
-            font-size: 0.78rem;
-            color: var(--text-mid);
-            margin-top: 6px;
-            line-height: 1.5;
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            background: var(--black);
-            padding: 80px 60px 40px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .footer-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            padding-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        /* FOOTER */
+        footer { background: var(--black); padding: 80px 60px 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .footer-brand .logo { font-size: 1.3rem; }
-        .footer-desc {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-top: 16px;
-            max-width: 260px;
-        }
-        .footer-col h4 {
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .footer-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; margin-top: 16px; max-width: 260px; }
+        .footer-col h4 { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 20px; font-weight: 600; }
         .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-col ul li a {
-            font-size: 0.88rem;
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        .footer-col ul li a { font-size: 0.88rem; color: var(--text-mid); text-decoration: none; transition: color 0.3s; }
         .footer-col ul li a:hover { color: var(--gold); }
-        .footer-col p {
-            font-size: 0.88rem;
-            color: var(--text-mid);
-            line-height: 1.8;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 32px auto 0;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .footer-col p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
+        .footer-bottom { max-width: 1200px; margin: 32px auto 0; display: flex; justify-content: space-between; align-items: center; }
         .footer-bottom p { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
-        /* ─── WA FLOAT ─── */
-        .whatsapp-float {
-            position: fixed; bottom: 28px; right: 28px;
-            width: 58px; height: 58px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 2000;
-            box-shadow: 0 4px 24px rgba(37,211,102,0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+        /* WA */
+        .whatsapp-float { position: fixed; bottom: 28px; right: 28px; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 4px 24px rgba(37,211,102,0.4); transition: transform 0.3s, box-shadow 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
 
-        /* ─── SCROLL LINE ─── */
-        .scroll-line {
-            position: absolute;
-            bottom: 40px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
-            animation: fadeUp 1s ease 1.2s both;
-        }
-        .scroll-line::after {
-            content: '';
-            width: 1px; height: 48px;
-            background: linear-gradient(to bottom, var(--gold), transparent);
-            animation: drawLine 1.5s ease 1.5s both;
-        }
+        /* SCROLL LINE */
+        .scroll-line { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); animation: fadeUp 1s ease 1.2s both; }
+        .scroll-line::after { content: ''; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: drawLine 1.5s ease 1.5s both; }
 
-        /* ─── DIVIDER ─── */
-        .gold-divider {
-            width: 40px; height: 2px;
-            background: var(--gold);
-            margin: 20px 0;
-        }
+        /* ANIMATIONS */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+        @keyframes drawLine { from { transform: scaleY(0); transform-origin: top; } to { transform: scaleY(1); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ─── ANIMATIONS ─── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.7); }
-        }
-        @keyframes drawLine {
-            from { transform: scaleY(0); transform-origin: top; }
-            to { transform: scaleY(1); }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ─── TABLET (≤1024px) ─── */
+        /* TABLET */
         @media (max-width: 1024px) {
             .fleet-grid { gap: 48px; }
-            .materials-grid { grid-template-columns: 1fr 1fr; }
-            .mat-card:first-child { grid-column: 1 / -1; height: 420px; }
-            .mat-card { height: 340px; }
             .process-strip { grid-template-columns: 1fr 1fr; gap: 12px; }
             .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
             .footer-grid .footer-col:last-child { grid-column: 1 / -1; }
         }
 
-        /* ─── MOBILE (≤768px) ─── */
+        /* MOBILE */
         @media (max-width: 768px) {
-            /* Header — на iOS убираем backdrop-filter, он вызывает баг "приклеивания" */
-            header {
-                padding: 0 20px;
-                height: 60px;
-                background: #0a0a0a; /* полностью непрозрачный */
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                -webkit-transform: translate3d(0,0,0);
-                transform: translate3d(0,0,0);
-            }
-
-            /* Nav — fullscreen overlay */
-            nav {
-                position: fixed;
-                top: 0; left: 0;
-                width: 100%; height: 100vh;
-                background: var(--black);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 36px;
-                transform: translateX(-100%);
-                transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-                z-index: 1060;
-            }
+            header { padding: 0 20px; height: 60px; background: #0a0a0a; backdrop-filter: none; -webkit-backdrop-filter: none; -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }
+            nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--black); flex-direction: column; justify-content: center; align-items: center; gap: 36px; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index: 1060; }
             nav.active { transform: translateX(0); }
-            nav a {
-                font-size: 1.4rem;
-                letter-spacing: 0.1em;
-                margin-left: 0;
-            }
-            .lang-switch {
-                margin-left: 0;
-                font-size: 1rem;
-                padding: 10px 24px;
-            }
-            .burger {
-                display: flex;
-                z-index: 1070; /* выше nav */
-            }
+            nav a { font-size: 1.4rem; letter-spacing: 0.1em; margin-left: 0; }
+            .lang-switch { margin-left: 0; font-size: 1rem; padding: 10px 24px; }
+            .burger { display: flex; z-index: 1070; }
 
-            /* Hero — ключевые исправления */
-            .hero {
-                padding: 80px 20px 60px;
-                min-height: 100svh;
-                align-items: flex-start;
-                justify-content: center;
-                overflow: hidden;
-            }
-            .hero-content {
-                text-align: left;
-                width: 100%;
-                max-width: 100%;
-            }
-            .hero-badge {
-                font-size: 0.6rem;
-                letter-spacing: 0.12em;
-                padding: 6px 14px;
-            }
-            /* Заголовок: фиксированный размер чтобы не вылезал */
-            .hero h1 {
-                font-size: clamp(2.6rem, 11vw, 4.5rem);
-                letter-spacing: 0;
-                line-height: 0.97;
-                word-break: keep-all;
-                white-space: nowrap;
-            }
-            .hero-sub {
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 0.9rem;
-                max-width: 100%;
-            }
-            /* Кнопки в ряд, не переносятся */
-            .hero-links {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: flex-start;
-            }
-            .btn-primary, .btn-ghost {
-                font-size: 0.72rem;
-                padding: 13px 18px;
-                letter-spacing: 0.04em;
-            }
-            /* Статистика */
-            .hero-stats {
-                gap: 0;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                padding-top: 24px;
-                margin-top: 36px;
-            }
+            .hero { padding: 80px 20px 60px; min-height: 100svh; align-items: flex-start; overflow: hidden; }
+            .hero-content { text-align: left; width: 100%; max-width: 100%; }
+            .hero-badge { font-size: 0.6rem; letter-spacing: 0.12em; padding: 6px 14px; }
+            .hero h1 { font-size: clamp(2.6rem, 11vw, 4.5rem); letter-spacing: 0; line-height: 0.97; word-break: keep-all; white-space: nowrap; }
+            .hero-sub { margin-left: 0; margin-right: 0; font-size: 0.9rem; max-width: 100%; }
+            .hero-links { flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: flex-start; }
+            .btn-primary, .btn-ghost { font-size: 0.72rem; padding: 13px 18px; letter-spacing: 0.04em; }
+            .hero-stats { gap: 0; flex-wrap: nowrap; justify-content: space-between; padding-top: 24px; margin-top: 36px; }
             .stat-item { flex: 1; text-align: center; }
             .stat-num { font-size: 1.8rem; }
             .stat-label { font-size: 0.55rem; }
-            /* Скрыть scroll indicator */
             .scroll-line { display: none !important; }
 
-            /* Fleet */
-            .section { padding: 64px 20px; }
             .fleet-section { padding: 64px 20px; }
             .fleet-grid { grid-template-columns: 1fr; gap: 32px; }
             .fleet-text h2 { font-size: clamp(2.2rem, 9vw, 3.5rem); }
@@ -854,13 +229,20 @@
             .spec-card .spec-key { font-size: 0.6rem; }
             .fleet-section::after { display: none; }
 
-            /* Materials */
             .materials-section { padding: 64px 20px; }
-            .materials-grid { grid-template-columns: 1fr; }
-            .mat-card, .mat-card:first-child { height: 300px; }
             .materials-header h2 { font-size: clamp(2.2rem, 9vw, 3.5rem); }
+            .mat-category-header { padding: 16px 18px; }
+            .mat-cat-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+            .mat-cat-title { font-size: 1.3rem; }
+            .mat-items { padding: 0 18px 18px; gap: 6px; }
+            .mat-item { font-size: 0.75rem; padding: 6px 11px; }
 
-            /* Process */
+            .contact-section { padding: 64px 20px; }
+            .contact-inner { grid-template-columns: 1fr; gap: 36px; }
+            .contact-left h2 { font-size: clamp(2.2rem, 9vw, 3.5rem); }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-info { gap: 12px; }
+
             .process-section { padding: 64px 20px; }
             .process-strip { grid-template-columns: 1fr 1fr; gap: 10px; }
             .process-card { height: 220px; }
@@ -869,25 +251,14 @@
             .process-desc { display: none; }
             .process-num { font-size: 2rem; }
 
-            /* Contact */
-            .contact-section { padding: 64px 20px; }
-            .contact-inner { grid-template-columns: 1fr; gap: 36px; }
-            .contact-left h2 { font-size: clamp(2.2rem, 9vw, 3.5rem); }
-            .form-row { grid-template-columns: 1fr; }
-            .contact-info { gap: 12px; }
-
-            /* Footer */
             footer { padding: 48px 20px 28px; }
             .footer-grid { grid-template-columns: 1fr; gap: 28px; }
             .footer-grid .footer-col:last-child { grid-column: auto; }
             .footer-desc { max-width: 100%; }
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-
-            /* WA button */
             .whatsapp-float { width: 50px; height: 50px; bottom: 18px; right: 18px; }
         }
 
-        /* ─── МАЛЕНЬКИЕ ТЕЛЕФОНЫ (≤390px) ─── */
         @media (max-width: 390px) {
             .hero h1 { font-size: 2.4rem; white-space: normal; }
             .hero-stats { display: none; }
@@ -900,7 +271,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <a href="#" class="logo">KAMAZ<span>DOSTAVKA</span></a>
     <nav id="nav-menu">
@@ -910,120 +280,196 @@
         <button class="lang-switch" id="lang-btn" onclick="toggleLang()">KZ</button>
     </nav>
     <div class="burger" id="burger-toggle">
-        <div class="line-top"></div>
-        <div class="line-mid"></div>
-        <div class="line-bottom"></div>
+        <div class="line-top"></div><div class="line-mid"></div><div class="line-bottom"></div>
     </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
     <div class="hero-photo"></div>
     <div class="hero-bg-lines"></div>
     <div class="hero-accent"></div>
     <div class="hero-content">
-        <div class="hero-badge">Алматы · Собственный парк</div>
-        <h1 id="hero-title">Доставка.<br><em>За 3 часа.</em></h1>
-        <p class="hero-sub" id="hero-p">Ваш песок и щебень уже в пути. Собственный парк КАМАЗов в Алматы.</p>
+        <div class="hero-badge">Алматы · Собственный парк КАМАЗов</div>
+        <h1 id="hero-title">Быстро.<br><em>Надёжно.</em></h1>
+        <p class="hero-sub" id="hero-p">Доставка строительных материалов по Алматы и области. Собственный парк КАМАЗов — гарантия точного веса и своевременной доставки.</p>
         <div class="hero-links">
-            <a href="#contact" class="btn-primary" id="hero-btn-calc">Рассчитать стоимость</a>
+            <a href="#contact" class="btn-primary" id="hero-btn-calc">Оставить заявку</a>
             <a href="https://wa.me/77000000000" class="btn-ghost">WhatsApp</a>
         </div>
         <div class="hero-stats">
-            <div class="stat-item">
-                <div class="stat-num">10+</div>
-                <div class="stat-label">КАМАЗов в парке</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">3ч</div>
-                <div class="stat-label">Время доставки</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">15т</div>
-                <div class="stat-label">Грузоподъёмность</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">11</div>
-                <div class="stat-label">Лет на рынке</div>
-            </div>
+            <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">КАМАЗов в парке</div></div>
+            <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Видов материалов</div></div>
+            <div class="stat-item"><div class="stat-num">15т</div><div class="stat-label">Грузоподъёмность</div></div>
+            <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Лет на рынке</div></div>
         </div>
     </div>
     <div class="scroll-line">Scroll</div>
 </section>
 
-<!-- FLEET -->
-<section id="kamaz" class="section fleet-section">
+<section id="kamaz" class="fleet-section">
     <div class="fleet-grid">
         <div class="fleet-image-wrap reveal">
-            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" alt="КАМАЗ"
-                 onerror="this.src='https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200'">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200" alt="КАМАЗ" onerror="this.src='https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200'">
         </div>
         <div class="fleet-text reveal">
             <span class="eyebrow" id="kamaz-eyebrow">Ваша техника</span>
             <div class="gold-divider"></div>
-            <h2 id="kamaz-h2">Мощь КАМАЗа.<br><em>Честный объем.</em></h2>
-            <p id="kamaz-p">10–15 тонн за один рейс. Точный вес на весах. Документы на каждый рейс. Доставка по всему Алматинскому региону.</p>
+            <h2 id="kamaz-h2">Мощь КАМАЗа.<br><em>Честный объём.</em></h2>
+            <p id="kamaz-p">Собственный парк — никаких посредников. Точный вес на весах, документы на каждый рейс, доставка в любую точку Алматы и области.</p>
             <div class="fleet-specs">
-                <div class="spec-card">
-                    <div class="spec-val">15т</div>
-                    <div class="spec-key">Макс. нагрузка</div>
-                </div>
-                <div class="spec-card">
-                    <div class="spec-val">8м³</div>
-                    <div class="spec-key">Объём кузова</div>
-                </div>
-                <div class="spec-card">
-                    <div class="spec-val">24/7</div>
-                    <div class="spec-key">Работаем</div>
-                </div>
+                <div class="spec-card"><div class="spec-val">15т</div><div class="spec-key">Макс. нагрузка</div></div>
+                <div class="spec-card"><div class="spec-val">8м³</div><div class="spec-key">Объём кузова</div></div>
+                <div class="spec-card"><div class="spec-val">24/7</div><div class="spec-key">Работаем</div></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- MATERIALS -->
-<section id="materials" class="section materials-section">
+<section id="materials" class="materials-section">
     <div class="materials-header reveal">
-        <span class="eyebrow" id="mat-eyebrow">Материалы</span>
+        <span class="eyebrow" id="mat-eyebrow">Что доставляем</span>
         <div class="gold-divider"></div>
-        <h2 id="materials-h2">Выбирайте<br>лучшее.</h2>
+        <h2 id="materials-h2">Все виды<br>материалов.</h2>
     </div>
-    <div class="materials-grid">
-        <div class="mat-card reveal">
-            <div class="mat-card-bg bg-sand"></div>
-            <div class="mat-card-content">
-                <div class="mat-tag">Речной · Мытый</div>
-                <h3 id="tile-sand">Песок</h3>
-                <p id="tile-sand-p">Для строительства и отделки.</p>
+    <div class="mat-categories">
+
+        <div class="mat-category reveal open">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🏖</div>
+                    <div><div class="mat-cat-title">Песок</div><div class="mat-cat-count">5 позиций</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Песок бархан</span>
+                    <span class="mat-item">Песок мытый</span>
+                    <span class="mat-item">Песок обогащённый</span>
+                    <span class="mat-item hl">ПГС (песчано-гравийная смесь)</span>
+                    <span class="mat-item">Отсев</span>
+                </div>
             </div>
         </div>
-        <div class="mat-card reveal">
-            <div class="mat-card-bg bg-stone"></div>
-            <div class="mat-card-content">
-                <div class="mat-tag">Все фракции</div>
-                <h3 id="tile-stone">Щебень</h3>
-                <p id="tile-stone-p">Гранитный и известняковый.</p>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🪨</div>
+                    <div><div class="mat-cat-title">Щебень</div><div class="mat-cat-count">7 фракций</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Щебень 5/10</span>
+                    <span class="mat-item hl">Щебень 5/20</span>
+                    <span class="mat-item">Щебень 20/40</span>
+                    <span class="mat-item">Щебень 25/60</span>
+                    <span class="mat-item">Щебень 40/70</span>
+                    <span class="mat-item">Щебень 70/150</span>
+                    <span class="mat-item">Клинец</span>
+                </div>
             </div>
         </div>
-        <div class="mat-card reveal">
-            <div class="mat-card-bg bg-ballast"></div>
-            <div class="mat-card-content">
-                <div class="mat-tag">Высокое качество</div>
-                <h3 id="tile-ballast">Балласт</h3>
-                <p id="tile-ballast-p">ПГС для любых задач.</p>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">⛏️</div>
+                    <div><div class="mat-cat-title">Балласт, грунт и камень</div><div class="mat-cat-count">5 позиций</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Балласт</span>
+                    <span class="mat-item hl">ГШС (горно-щебёночная смесь)</span>
+                    <span class="mat-item">Камень бутовый</span>
+                    <span class="mat-item">Грунт</span>
+                    <span class="mat-item">Глина</span>
+                </div>
             </div>
         </div>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🌱</div>
+                    <div><div class="mat-cat-title">Чернозём и органика</div><div class="mat-cat-count">2 позиции</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Чернозём</span>
+                    <span class="mat-item">Торф</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🪵</div>
+                    <div><div class="mat-cat-title">Уголь</div><div class="mat-cat-count">3 фракции</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Уголь 0–20</span>
+                    <span class="mat-item">Уголь 0–40</span>
+                    <span class="mat-item">Уголь 0–70</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🧱</div>
+                    <div><div class="mat-cat-title">Кирпич и блоки</div><div class="mat-cat-count">4 позиции</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Кирпич красный</span>
+                    <span class="mat-item">Сплитерный блок 20×40</span>
+                    <span class="mat-item">Сплитерный блок 10×40</span>
+                    <span class="mat-item">Сплитерный блок 15×40</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mat-category reveal">
+            <div class="mat-category-header" onclick="toggleCat(this)">
+                <div class="mat-category-left">
+                    <div class="mat-cat-icon">🚛</div>
+                    <div><div class="mat-cat-title">Вывоз мусора и котлована</div><div class="mat-cat-count">Любые объёмы</div></div>
+                </div>
+                <div class="mat-cat-arrow">▼</div>
+            </div>
+            <div class="mat-category-body">
+                <div class="mat-items">
+                    <span class="mat-item hl">Вывоз строительного мусора</span>
+                    <span class="mat-item">Вывоз грунта из котлована</span>
+                    <span class="mat-item">Вывоз снега</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="contact-section">
     <div class="contact-inner">
         <div class="contact-left reveal">
-            <span class="eyebrow">Заказать доставку</span>
+            <span class="eyebrow">Оставить заявку</span>
             <div class="gold-divider"></div>
-            <h2 id="form-title">Рассчитать.<br><em>Быстро.</em></h2>
-            <p>Оставьте заявку — мы перезвоним в течение 10 минут и рассчитаем стоимость доставки.</p>
+            <h2 id="form-title">Быстро.<br><em>Надёжно.</em></h2>
+            <p>Оставьте заявку — менеджер свяжется с вами, уточнит объём и адрес, подберёт оптимальный вариант доставки.</p>
             <div class="contact-info">
                 <div class="contact-info-item">
                     <div class="ci-icon">📞</div>
@@ -1031,11 +477,11 @@
                 </div>
                 <div class="contact-info-item">
                     <div class="ci-icon">📍</div>
-                    <div class="ci-text"><strong id="footer-city">г. Алматы, Казахстан</strong>Доставка по региону</div>
+                    <div class="ci-text"><strong id="footer-city">г. Алматы, Казахстан</strong>Доставка по всей области</div>
                 </div>
                 <div class="contact-info-item">
-                    <div class="ci-icon">⏱</div>
-                    <div class="ci-text"><strong>Доставка за 3 часа</strong>С момента подтверждения</div>
+                    <div class="ci-icon">✅</div>
+                    <div class="ci-text"><strong>Точный вес гарантирован</strong>Документы на каждый рейс</div>
                 </div>
             </div>
         </div>
@@ -1047,19 +493,58 @@
                 </div>
                 <select id="input-mat" required>
                     <option value="" id="opt-default">Выберите материал</option>
-                    <option id="opt-sand">Песок</option>
-                    <option id="opt-stone">Щебень</option>
-                    <option id="opt-ballast">Балласт</option>
+                    <optgroup label="── Песок ──">
+                        <option>Песок бархан</option>
+                        <option>Песок мытый</option>
+                        <option>Песок обогащённый</option>
+                        <option>ПГС</option>
+                        <option>Отсев</option>
+                    </optgroup>
+                    <optgroup label="── Щебень ──">
+                        <option>Щебень 5/10</option>
+                        <option>Щебень 5/20</option>
+                        <option>Щебень 20/40</option>
+                        <option>Щебень 25/60</option>
+                        <option>Щебень 40/70</option>
+                        <option>Щебень 70/150</option>
+                        <option>Клинец</option>
+                    </optgroup>
+                    <optgroup label="── Балласт / Грунт / Камень ──">
+                        <option>Балласт</option>
+                        <option>ГШС</option>
+                        <option>Камень бутовый</option>
+                        <option>Грунт</option>
+                        <option>Глина</option>
+                    </optgroup>
+                    <optgroup label="── Чернозём ──">
+                        <option>Чернозём</option>
+                        <option>Торф</option>
+                    </optgroup>
+                    <optgroup label="── Уголь ──">
+                        <option>Уголь 0–20</option>
+                        <option>Уголь 0–40</option>
+                        <option>Уголь 0–70</option>
+                    </optgroup>
+                    <optgroup label="── Кирпич и блоки ──">
+                        <option>Кирпич красный</option>
+                        <option>Сплитерный блок 20×40</option>
+                        <option>Сплитерный блок 10×40</option>
+                        <option>Сплитерный блок 15×40</option>
+                    </optgroup>
+                    <optgroup label="── Вывоз ──">
+                        <option>Вывоз строительного мусора</option>
+                        <option>Вывоз грунта из котлована</option>
+                        <option>Вывоз снега</option>
+                    </optgroup>
                 </select>
                 <input type="text" placeholder="Адрес доставки">
-                <button type="submit" id="form-btn">Отправить запрос</button>
-                <p class="form-note">Перезвоним в течение 10 минут</p>
+                <button type="submit" id="form-btn">Отправить заявку</button>
+                <p class="form-note">Менеджер перезвонит и уточнит детали</p>
             </form>
         </div>
     </div>
 </section>
 
-<!-- PROCESS -->
 <section class="process-section">
     <div class="process-header reveal">
         <span class="eyebrow">Как это работает</span>
@@ -1069,45 +554,28 @@
     <div class="process-strip">
         <div class="process-card reveal">
             <img class="process-card-img" src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=800" alt="Заявка">
-            <div class="process-card-overlay">
-                <div class="process-num">01</div>
-                <div class="process-title">Заявка</div>
-                <div class="process-desc">Оставьте заявку онлайн или по телефону</div>
-            </div>
+            <div class="process-card-overlay"><div class="process-num">01</div><div class="process-title">Заявка</div><div class="process-desc">Оставьте заявку онлайн или по телефону</div></div>
         </div>
         <div class="process-card reveal">
             <img class="process-card-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800" alt="Расчёт">
-            <div class="process-card-overlay">
-                <div class="process-num">02</div>
-                <div class="process-title">Расчёт</div>
-                <div class="process-desc">Менеджер перезвонит и рассчитает цену</div>
-            </div>
+            <div class="process-card-overlay"><div class="process-num">02</div><div class="process-title">Расчёт</div><div class="process-desc">Менеджер перезвонит и рассчитает стоимость</div></div>
         </div>
         <div class="process-card reveal">
             <img class="process-card-img" src="https://images.unsplash.com/photo-1586528116493-a029325540fa?q=80&w=800" alt="Погрузка">
-            <div class="process-card-overlay">
-                <div class="process-num">03</div>
-                <div class="process-title">Погрузка</div>
-                <div class="process-desc">КАМАЗ загружается на карьере с точным весом</div>
-            </div>
+            <div class="process-card-overlay"><div class="process-num">03</div><div class="process-title">Погрузка</div><div class="process-desc">КАМАЗ загружается с точным весом и документами</div></div>
         </div>
         <div class="process-card reveal">
             <img class="process-card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800" alt="Доставка">
-            <div class="process-card-overlay">
-                <div class="process-num">04</div>
-                <div class="process-title">Доставка</div>
-                <div class="process-desc">Материал у вас на объекте за 3 часа</div>
-            </div>
+            <div class="process-card-overlay"><div class="process-num">04</div><div class="process-title">Доставка</div><div class="process-desc">Материал доставлен прямо на ваш объект</div></div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-grid">
         <div class="footer-brand">
             <a href="#" class="logo">KAMAZ<span>DOSTAVKA</span></a>
-            <p class="footer-desc" id="footer-about">Ваш надёжный партнёр в поставке инертных материалов по Алматы и области с 2015 года.</p>
+            <p class="footer-desc" id="footer-about">Надёжная доставка строительных материалов по Алматы и области. Собственный парк КАМАЗов. Работаем с 2015 года.</p>
         </div>
         <div class="footer-col">
             <h4 id="footer-nav-title">Навигация</h4>
@@ -1120,9 +588,10 @@
         <div class="footer-col">
             <h4>Материалы</h4>
             <ul>
-                <li><a href="#materials">Песок</a></li>
-                <li><a href="#materials">Щебень</a></li>
-                <li><a href="#materials">Балласт</a></li>
+                <li><a href="#materials">Песок / ПГС / Отсев</a></li>
+                <li><a href="#materials">Щебень всех фракций</a></li>
+                <li><a href="#materials">Балласт / Грунт / Камень</a></li>
+                <li><a href="#materials">Уголь / Кирпич / Блоки</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -1136,7 +605,6 @@
     </div>
 </footer>
 
-<!-- WA FLOAT -->
 <a href="https://wa.me/77000000000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
     <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M24 4C12.954 4 4 12.954 4 24C4 27.618 4.988 31.02 6.71 33.944L4.073 43.658L14.012 41.073C16.845 42.641 20.32 43.5 24 43.5C35.046 43.5 44 34.546 44 23.5C44 12.954 35.046 4 24 4Z" fill="white"/>
@@ -1145,7 +613,7 @@
 </a>
 
 <script>
-// ─── BURGER ───
+// BURGER
 const burger = document.getElementById('burger-toggle');
 const navMenu = document.getElementById('nav-menu');
 burger.addEventListener('click', () => {
@@ -1161,102 +629,58 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-// ─── SCROLL REVEAL ───
-const reveals = document.querySelectorAll('.reveal');
+// ACCORDION
+function toggleCat(header) {
+    const cat = header.closest('.mat-category');
+    const isOpen = cat.classList.contains('open');
+    document.querySelectorAll('.mat-category').forEach(c => c.classList.remove('open'));
+    if (!isOpen) cat.classList.add('open');
+}
+
+// SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), i * 120);
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
             observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12 });
-reveals.forEach(el => observer.observe(el));
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ─── LANGUAGE ───
+// LANGUAGE
 const langData = {
-    'ru': {
-        'btn': 'KZ',
-        'nav-kamaz': 'Техника', 'nav-materials': 'Материалы', 'nav-order': 'Заказать',
-        'hero-title': 'Доставка.<br><em>За 3 часа.</em>',
-        'hero-p': 'Ваш песок и щебень уже в пути. Собственный парк КАМАЗов в Алматы.',
-        'kamaz-eyebrow': 'Ваша техника',
-        'kamaz-h2': 'Мощь КАМАЗа.<br><em>Честный объем.</em>',
-        'materials-h2': 'Выбирайте<br>лучшее.',
-        'form-title': 'Рассчитать.<br><em>Быстро.</em>',
-        'form-btn': 'Отправить запрос',
-        'footer-about': 'Ваш надёжный партнёр в поставке инертных материалов по Алматы и области с 2015 года.'
-    },
-    'kz': {
-        'btn': 'EN',
-        'nav-kamaz': 'Техника', 'nav-materials': 'Материалдар', 'nav-order': 'Тапсырыс',
-        'hero-title': 'Жеткізу.<br><em>3 сағатта.</em>',
-        'hero-p': 'Құм мен қиыршық тас жолда. Алматыдағы жеке КАМАЗ паркі.',
-        'kamaz-eyebrow': 'Сіздің техникаңыз',
-        'kamaz-h2': 'КАМАЗ қуаты.<br><em>Нақты көлем.</em>',
-        'materials-h2': 'Ең жақсысын<br>таңдаңыз.',
-        'form-title': 'Есептеу.<br><em>Жылдам.</em>',
-        'form-btn': 'Сұраныс жіберу',
-        'footer-about': '2015 жылдан бері Алматы мен облыс бойынша инертті материалдарды жеткізудегі сенімді серіктесіңіз.'
-    },
-    'en': {
-        'btn': 'RU',
-        'nav-kamaz': 'Fleet', 'nav-materials': 'Materials', 'nav-order': 'Order',
-        'hero-title': 'Delivery.<br><em>In 3 hours.</em>',
-        'hero-p': 'Your sand and gravel are on the way. Own KAMAZ fleet in Almaty.',
-        'kamaz-eyebrow': 'Your Machinery',
-        'kamaz-h2': 'KAMAZ Power.<br><em>Honest volume.</em>',
-        'materials-h2': 'Choose<br>the best.',
-        'form-title': 'Calculate.<br><em>Fast.</em>',
-        'form-btn': 'Send Request',
-        'footer-about': 'Your reliable partner in the supply of inert materials in Almaty and the region since 2015.'
-    }
+    ru: { btn:'KZ', 'nav-kamaz':'Техника', 'nav-materials':'Материалы', 'nav-order':'Заказать', 'hero-title':'Быстро.<br><em>Надёжно.</em>', 'hero-p':'Доставка строительных материалов по Алматы и области. Собственный парк КАМАЗов — гарантия точного веса и своевременной доставки.', 'kamaz-eyebrow':'Ваша техника', 'kamaz-h2':'Мощь КАМАЗа.<br><em>Честный объём.</em>', 'kamaz-p':'Собственный парк — никаких посредников. Точный вес на весах, документы на каждый рейс, доставка в любую точку Алматы и области.', 'mat-eyebrow':'Что доставляем', 'materials-h2':'Все виды<br>материалов.', 'form-title':'Быстро.<br><em>Надёжно.</em>', 'form-btn':'Отправить заявку', 'footer-about':'Надёжная доставка строительных материалов по Алматы и области. Работаем с 2015 года.' },
+    kz: { btn:'EN', 'nav-kamaz':'Техника', 'nav-materials':'Материалдар', 'nav-order':'Тапсырыс', 'hero-title':'Жылдам.<br><em>Сенімді.</em>', 'hero-p':'Алматы және облыс бойынша құрылыс материалдарын жеткізу. Жеке КАМАЗ паркі — дәл салмақ пен уақтылы жеткізудің кепілі.', 'kamaz-eyebrow':'Сіздің техникаңыз', 'kamaz-h2':'КАМАЗ қуаты.<br><em>Нақты көлем.</em>', 'kamaz-p':'Жеке парк — делдалдарсыз. Таразыдағы дәл салмақ, әр рейске құжат, Алматы мен облыстың кез келген нүктесіне жеткізу.', 'mat-eyebrow':'Не жеткіземіз', 'materials-h2':'Барлық түрдегі<br>материалдар.', 'form-title':'Жылдам.<br><em>Сенімді.</em>', 'form-btn':'Өтінім жіберу', 'footer-about':'Алматы және облыс бойынша құрылыс материалдарын сенімді жеткізу. 2015 жылдан бері жұмыс істейміз.' },
+    en: { btn:'RU', 'nav-kamaz':'Fleet', 'nav-materials':'Materials', 'nav-order':'Order', 'hero-title':'Fast.<br><em>Reliable.</em>', 'hero-p':'Construction material delivery across Almaty and the region. Our own KAMAZ fleet guarantees accurate weight and on-time delivery.', 'kamaz-eyebrow':'Your Machinery', 'kamaz-h2':'KAMAZ Power.<br><em>Honest volume.</em>', 'kamaz-p':'Own fleet — no middlemen. Precise weight on scales, documents for every trip, delivery anywhere in Almaty and the region.', 'mat-eyebrow':'What we deliver', 'materials-h2':'All types<br>of materials.', 'form-title':'Fast.<br><em>Reliable.</em>', 'form-btn':'Send Request', 'footer-about':'Reliable construction material delivery across Almaty and the region. Working since 2015.' }
 };
-
-let languages = ['ru', 'kz', 'en'];
-let currentIndex = 0;
-
+let languages = ['ru','kz','en'], currentIndex = 0;
 function toggleLang() {
-    currentIndex = (currentIndex + 1) % languages.length;
+    currentIndex = (currentIndex + 1) % 3;
     const lang = languages[currentIndex];
-    document.getElementById('lang-btn').innerText = langData[lang]['btn'];
+    document.getElementById('lang-btn').innerText = langData[lang].btn;
     Object.keys(langData[lang]).forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(8px)';
-            el.style.transition = 'opacity 0.3s, transform 0.3s';
-            setTimeout(() => {
-                el.innerHTML = langData[lang][id];
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 280);
+            el.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s';
+            setTimeout(() => { el.innerHTML = langData[lang][id]; el.style.cssText = 'opacity:1;transform:translateY(0);transition:opacity .3s,transform .3s'; }, 280);
         }
     });
 }
 
-// ─── FORM ───
-document.getElementById('orderForm').addEventListener('submit', (e) => {
+// FORM
+document.getElementById('orderForm').addEventListener('submit', e => {
     e.preventDefault();
     const btn = document.getElementById('form-btn');
-    btn.textContent = '✓ Запрос отправлен!';
+    btn.textContent = '✓ Заявка отправлена!';
     btn.style.background = '#2ecc71';
-    setTimeout(() => {
-        btn.textContent = 'Отправить запрос';
-        btn.style.background = '';
-        e.target.reset();
-    }, 3000);
+    setTimeout(() => { btn.textContent = 'Отправить заявку'; btn.style.background = ''; e.target.reset(); }, 3000);
 });
 
-// ─── HEADER on scroll ───
+// HEADER SCROLL
 window.addEventListener('scroll', () => {
-    if (window.innerWidth <= 768) return; // на мобиле не трогаем
-    const h = document.querySelector('header');
-    if (window.scrollY > 60) {
-        h.style.borderBottomColor = 'rgba(200,146,42,0.25)';
-    } else {
-        h.style.borderBottomColor = 'rgba(200,146,42,0.15)';
-    }
+    if (window.innerWidth <= 768) return;
+    document.querySelector('header').style.borderBottomColor = window.scrollY > 60 ? 'rgba(200,146,42,0.25)' : 'rgba(200,146,42,0.15)';
 }, { passive: true });
 </script>
 </body>
